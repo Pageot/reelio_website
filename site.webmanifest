@@ -1,0 +1,13 @@
+{
+  "name": "Reelio",
+  "short_name": "Reelio",
+  "description": "Native Windows video library manager with hover-scrub previews, color tags and drag-into-editor.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FFFFFC",
+  "theme_color": "#FFD344",
+  "icons": [
+    { "src": "assets/logo.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "assets/logo-large.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }
+  ]
+}

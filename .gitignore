@@ -1,0 +1,12 @@
+# Handoff bundles (not part of the website source)
+Reelio-handoff/
+Reelio-handoff.zip
+
+# Local backup of original images created during the image-optimization pass
+_image-opt-backup/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*~

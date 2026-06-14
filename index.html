@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Reelio — Native Windows video library with hover-scrub previews</title>
+<meta name="description" content="Native Windows video library for editors: hover-scrub previews, color tags, FTS5 search, drag clips into Premiere or DaVinci. 100% local, one-time payment." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#FFD344" />
+<link rel="canonical" href="https://reelio.app/" />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="assets/logo.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Reelio — Native Windows video library with hover-scrub previews" />
+<meta property="og:description" content="The video library Windows Explorer never gave you. Hover-scrub clips, tag, search and drag straight into Premiere. 100% local, one-time payment." />
+<meta property="og:url" content="https://reelio.app/" />
+<meta property="og:image" content="https://reelio.app/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Reelio" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Reelio — Native Windows video library" />
+<meta name="twitter:description" content="Hover-scrub previews, color tags, drag into Premiere. 100% local. Windows-native." />
+<meta name="twitter:image" content="https://reelio.app/assets/og-image.png" />
+<meta name="twitter:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
+
+<!-- SoftwareApplication structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Reelio",
+  "operatingSystem": "Windows 11",
+  "applicationCategory": "MultimediaApplication",
+  "description": "Native Windows video library manager with hover-scrub previews, color tags, FTS5 search and drag-and-drop into Premiere Pro or DaVinci Resolve. 100% local, no cloud.",
+  "offers": {"@type":"Offer","price":"14.99","priceCurrency":"USD","availability":"https://schema.org/InStock","category":"OneTimePurchase"},
+  "url": "https://reelio.app/",
+  "image": "https://reelio.app/assets/logo-large.png",
+  "screenshot": "https://reelio.app/assets/fig-walk-screenshot.png",
+  "softwareVersion": "1.0",
+  "downloadUrl": "https://apps.microsoft.com/",
+  "publisher": {"@type":"Organization","name":"Reelio"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Does it really stay 100% local?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zero cloud, zero telemetry, zero account. Everything sits in reelio/index.db on your computer."}},
+    {"@type":"Question","name":"Will it eat my CPU?","acceptedAnswer":{"@type":"Answer","text":"The FFmpeg worker pool is capped at 2 processes. Scans are iterative, not recursive, stack-safe on huge folder trees, and the UI never blocks."}},
+    {"@type":"Question","name":"What if I unplug my external drive?","acceptedAnswer":{"@type":"Answer","text":"Nothing, until you ask. Reelio never re-scans on its own, so as long as the drive stays plugged in your clips stay put. The library only changes when you manually trigger a re-scan: at that point Reelio adds any new files it finds at the watched path and removes anything it can no longer reach. Unplug the drive, then run a scan, and those clips disappear from the library. Your video files themselves are never touched."}},
+    {"@type":"Question","name":"Mac / Linux version?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Reelio is WinUI 3, Windows-native."}},
+    {"@type":"Question","name":"How much?","acceptedAnswer":{"@type":"Answer","text":"One-time payment on the Microsoft Store. No subscription, ever."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist:wght@400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="assets/fig-hero-thumb.jpg" fetchpriority="high" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site">
+  <div class="wrap row">
+    <a href="#top" class="brand" aria-label="Reelio home">
+      <img class="wordmark" src="assets/logo-wordmark.svg" alt="Reelio" />
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#tour">Tour</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn-store" href="#get">
+        <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
+        Download on Microsoft Store
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ========== HERO ========== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-grid">
+      <img class="can-deco" src="assets/can.png" alt="" aria-hidden="true" width="233" height="247" decoding="async" />
+      <!-- Big left card -->
+      <div class="hero-card big">
+        <h1 id="hero-title">Your video stash, <span class="orange">organized.</span></h1>
+        <p>Hover-scrub previews. Drag into Premiere. Reelio is the video library Windows Explorer never gave you.</p>
+        <a class="btn-store" href="#get" style="align-self: flex-start;">
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
+          Download on Microsoft Store
+        </a>
+        <!-- Beach wave + palm tree decoration -->
+        <svg class="wave-deco" viewBox="0 0 364 143" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 287.496 5.981 C 284.187 5.58 280.821 5.227 277.642 4.152 C 276.539 3.778 275.59 3.4 275.618 2.122 C 276.108 1.313 277.082 1.024 277.965 0.831 C 296.277 -3.175 307.644 7.712 311.827 24.73 C 314.482 17.626 321.206 10.62 328.071 7.472 C 335.483 4.073 345.996 4.528 352.434 9.933 C 349.986 10.84 348.23 11.475 345.607 11.847 C 344.602 11.264 341.891 10.612 340.823 11.081 C 340.37 12.686 343.412 12.052 343.293 13.995 C 341.843 15.996 335.504 14.886 333.173 14.876 C 334.065 15.389 336.291 16.589 337 17.165 C 332.26 20.024 331.139 18.518 326.29 19.012 C 327.847 19.977 328.76 20.358 330.478 20.996 C 327.255 23.617 323.021 25.496 319.56 27.702 C 322.268 27.341 325.509 26.177 328.327 25.677 C 337.256 24.092 346.981 25.131 354.366 30.806 C 359.669 34.845 363.116 40.877 363.917 47.522 C 363.954 47.797 363.982 48.075 364 48.352 C 357.381 45.323 358.316 44.724 354.408 39.166 C 354.73 40.493 356.033 44.218 354.176 44.627 C 351.169 43.637 348.587 38.854 346.794 36.218 C 347.078 37.722 347.559 39.952 347.73 41.411 C 345.768 40.981 345.009 40.834 343.367 39.716 C 342.822 38.619 341.589 35.879 340.721 35.197 L 340.455 35.223 C 340.235 36.406 341.075 38.422 340.86 39.221 C 339.85 39.174 337.365 38.37 336.281 38.055 C 335.6 37.264 333.441 34.469 332.498 34.39 L 332.432 34.801 C 332.921 35.473 333.562 36.213 333.719 37.011 C 333.135 39.377 326.518 35.886 324.31 36.835 C 324.741 37.716 327.493 38.579 328.437 39.089 C 333.084 41.6 338.096 45.336 341.486 49.395 C 348.371 57.639 350.432 69.702 346.524 79.727 C 346.385 80.081 346.109 80.402 345.758 80.554 C 342.999 79.051 343.384 71.181 342.548 70.61 C 341.893 71.374 341.788 72.373 341.627 73.357 C 337.121 68.35 339.798 64.453 338.936 63.148 C 338.078 64.251 337.457 65.748 336.847 67.028 C 336.088 65.641 335.296 64.272 334.472 62.922 C 334.494 61.637 334.635 57.741 334.432 56.694 L 334.206 56.599 C 333.409 57.523 333.151 58.953 332.665 60.122 C 330.867 58.809 330.43 57.973 329.283 56.028 C 329.926 54.093 329.926 52.712 330.015 50.668 C 329.324 51.788 328.542 52.991 327.964 54.164 C 326.935 53.012 325.789 51.78 324.846 50.569 C 325.196 49.666 325.593 48.859 325.545 47.895 L 325.372 47.51 C 324.646 47.923 324.421 49.026 324.181 49.843 C 322.179 47.719 320.084 45.307 317.602 43.805 C 322.594 50.806 325.134 58.186 323.835 66.985 C 323.16 71.543 321.252 76.348 318.203 79.808 C 317.24 74.838 317.522 74.418 319.01 69.496 C 318.275 70.279 316.907 72.16 315.83 71.168 C 314.891 68.193 317.159 63.663 316.907 62.766 C 315.924 62.921 315.858 64.354 314.913 64.84 C 313.566 63.823 313.481 60.648 313.59 59.038 C 314.879 57.258 315.419 55.95 316.273 53.922 C 315.832 54.272 315.205 54.762 314.845 55.183 C 314.331 55.782 313.513 57.53 312.937 57.885 C 311.674 57.07 310.715 47.969 310.23 46.064 C 307.968 52.702 305.682 63.135 303.929 70.21 L 298.299 93.039 C 296.043 102.103 293.844 111.194 291.308 120.181 C 290.304 123.736 289.44 127.459 288.111 130.9 C 298.539 133.556 309.068 136.174 319.228 139.756 C 320.954 140.365 325.67 142.097 327.261 143 L 0 143 C 3.475 141.386 8.281 140.022 11.969 138.714 C 20.785 135.586 28.577 131.268 35.427 124.818 C 45.319 115.505 51.405 103.285 57.883 91.529 C 64.64 79.266 71.63 67.987 82.265 58.645 C 88.003 53.604 94.163 49.519 101.41 47.002 C 109.397 44.228 118.338 43.897 126.327 46.861 C 131.716 48.86 137.419 52.685 139.962 58.051 C 141.365 61.009 142.304 65.127 141.2 68.346 C 140.579 70.155 139.494 70.974 138.03 72.082 C 136.609 69.47 135.328 67.224 132.303 66.396 C 126.312 64.758 120.838 69.309 119.288 74.944 C 117.902 79.987 119.493 84.647 121.847 89.086 C 124.093 93.199 128.255 96.8 132.802 98.088 C 136.64 99.18 140.753 98.684 144.225 96.71 C 148.922 94.062 154.479 88.096 158.73 84.419 C 170.013 74.658 184.424 66.947 199.693 71.016 C 206.928 72.945 214.443 78.981 212.612 87.472 C 212.419 88.364 211.903 89.155 211.269 89.801 C 210.006 89.699 208.638 87.188 207.524 86.73 C 205.113 85.739 201.548 85.735 199.523 87.638 C 194.512 92.347 196.901 99.863 200.817 104.225 C 208.08 112.316 219.687 114.925 229.752 117.306 C 237.973 119.256 246.223 121.075 254.502 122.764 C 260.452 123.99 268.04 125.351 273.739 127.158 C 277.747 119.932 279.836 114.549 282.882 106.927 C 291.275 85.938 297.496 64.345 304.999 43.011 C 304.012 43.581 300.136 45.947 299.325 46.148 C 298.775 45.36 299.24 45.132 298.636 44.673 C 298.223 45.078 298.144 46.2 298.064 46.836 C 296.378 48.367 294.75 49.68 292.81 50.895 C 292.836 49.491 292.933 47.896 292.625 46.543 L 292.436 46.418 C 291.034 47.64 289.825 55.658 285.949 55.938 C 285.361 55.786 285.246 55.776 284.86 55.309 C 284.499 54.066 285.105 51.651 285.381 50.309 C 281.47 55.01 284.596 57.106 278.446 61.834 C 278.472 60.897 278.577 59.632 278.311 58.77 L 277.993 58.468 C 276.226 58.927 276.613 61.851 275.896 62.996 C 274.452 65.297 271.948 67.459 269.978 69.351 C 268.834 54.112 278.287 40.871 292.812 36.486 C 294.891 35.858 297.042 35.717 299.097 34.954 C 294.688 34.331 290.729 34.59 286.318 34.47 L 289.281 29.724 C 286.928 31.355 285.625 32.494 283.563 34.502 C 280.825 34.963 277.683 35.213 274.895 35.413 C 275.86 33.013 276.956 31.305 278.096 29.047 C 271.728 33.684 273.584 36.069 264.479 37.396 C 265.077 35.295 266.107 34.076 266.791 32.248 C 264.191 34.366 259.083 40.338 255.934 39.969 C 255.773 39.949 255.612 39.922 255.453 39.887 C 255.193 39.485 255.088 39.249 255.245 38.701 C 256.956 32.787 262.32 27.22 267.327 24.086 C 274.21 19.778 282.6 19.481 290.282 21.093 C 293.453 21.758 296.643 23.333 299.49 24.841 C 301.01 25.646 302.185 26.52 303.831 27.055 C 302.555 25.358 298.72 22.329 296.72 20.117 C 298.62 19.682 299.572 19.466 301.29 18.513 C 298.783 17.965 296.285 17.989 293.964 17.457 C 292.893 16.488 290.546 14.932 290.25 13.759 C 290.762 12.018 293.552 13.173 294.065 11.954 C 293.682 11.434 293.026 11.219 292.419 11.164 C 287.899 10.752 285.424 10.836 281.937 7.353 C 283.806 6.952 285.676 6.572 287.496 5.981 Z" fill="currentColor" fill-rule="nonzero"/>
+        </svg>
+      </div>
+
+      <!-- Right video card -->
+      <div class="hero-card video" style="gap: 8px; justify-content: center">
+        <div class="app-label">
+          <img src="assets/logo-wordmark.svg" alt="Reelio" />
+          <span>· app</span>
+        </div>
+        <div class="video-frame" data-scrub data-frames="hero">
+          <div class="scrub-stage"></div>
+          <span class="scrub-tape">Hover to scrub</span>
+          <div class="scrub-segs" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="ttl" style="font-size: 20px">Sip, relax, repeat</span>
+          <div class="meta-row">
+            <span style="font-size: 12px">43 min</span>
+            <span class="dot"></span>
+            <span style="font-size: 12px">260 mo</span>
+            <span class="dot"></span>
+            <span style="font-size: 12px">10/08/2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="hero-bottom">
+      <!-- 50k+ clips -->
+      <div class="hero-card stat-card">
+        <span class="lbl-top">TESTED ON A DATA BASE OF</span>
+        <span class="big-num">50 000+ clips</span>
+        <span class="lbl-bot">iterative scans · stack-safe</span>
+      </div>
+      <!-- 100% local -->
+      <div class="hero-card local-card">
+        <!-- Sun SVG -->
+        <img class="sunset" src="assets/sunset.svg" alt="" aria-hidden="true" />
+        <div>
+          <h3>100% local</h3>
+          <p>Zero cloud · zero telemetry</p>
+        </div>
+      </div>
+      <!-- Organize -->
+      <div class="hero-card organize-card">
+        <div class="sidebar-mock" aria-hidden="true">
+          <img class="sidebar-illu" src="assets/illu-tags.svg" alt="" width="214" height="142" decoding="async" />
+          <img class="sidebar-star" src="assets/fig-star.png" alt="" width="48" height="48" decoding="async" />
+        </div>
+        <div class="text">
+          <h3>Organize</h3>
+          <p>The best way to stay organized</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE ========== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="lead">Hover-scrub</span><span class="sub">preview without playing</span></span>
+    <span class="marquee-item"><span class="lead">Color tags</span><span class="sub">drag to organize</span></span>
+    <span class="marquee-item"><span class="lead">FTS5 search</span><span class="sub">find in 200ms</span></span>
+    <span class="marquee-item"><span class="lead">Favorites</span><span class="sub">with gold-star pinning</span></span>
+    <span class="marquee-item"><span class="lead">Drag and drop into any video editing software</span><span class="sub">with metadata intact</span></span>
+    <span class="marquee-item"><span class="lead">SQLite per library</span><span class="sub">move it freely</span></span>
+    <!-- duplicate for infinite scroll -->
+    <span class="marquee-item"><span class="lead">Hover-scrub</span><span class="sub">preview without playing</span></span>
+    <span class="marquee-item"><span class="lead">Color tags</span><span class="sub">drag to organize</span></span>
+    <span class="marquee-item"><span class="lead">FTS5 search</span><span class="sub">find in 200ms</span></span>
+    <span class="marquee-item"><span class="lead">Favorites</span><span class="sub">with gold-star pinning</span></span>
+    <span class="marquee-item"><span class="lead">Drag and drop into any video editing software</span><span class="sub">with metadata intact</span></span>
+    <span class="marquee-item"><span class="lead">SQLite per library</span><span class="sub">move it freely</span></span>
+  </div>
+</div>
+
+<!-- ========== A WALK THROUGH THE APP ========== -->
+<section id="tour" aria-labelledby="tour-title">
+  <div class="wrap">
+    <span class="section-eyebrow">A WALK THROUGH</span>
+    <h2 id="tour-title" class="section-title">Every part of the app, in one shot.</h2>
+    <p class="section-sub">Tabs, color tags, hover-previews, library stats — hover the dots to see what each piece does.</p>
+    <div class="walk-shot" id="walk-shot" style="margin-top: 32px;">
+      <img src="assets/fig-walk-screenshot.png" alt="Screenshot of Reelio's gallery view showing virtual views, color tags, breadcrumb and a grid of video thumbnails." width="2856" height="1523" loading="lazy" decoding="async" />
+      <div class="walk-hotspots" aria-hidden="false">
+        <button class="walk-spot flip-down" type="button" style="left: 8%; top: 10%" aria-label="Searching that's way faster than File Explorer">
+          <span class="walk-tooltip">Searching that's way faster than File Explorer</span>
+        </button>
+        <button class="walk-spot flip-down" type="button" style="left: 10%; top: 2.5%" aria-label="Open multiple gallery tabs">
+          <span class="walk-tooltip">Multiple tabs, like a browser</span>
+        </button>
+        <button class="walk-spot" type="button" style="left: 15.5%; top: 51.5%" aria-label="Color tags">
+          <span class="walk-tooltip">Color tags to group your clips</span>
+        </button>
+        <button class="walk-spot" type="button" style="left: 39.5%; top: 33%" aria-label="Folder count badges">
+          <span class="walk-tooltip">Folders show clip count at a glance</span>
+        </button>
+        <button class="walk-spot" type="button" style="left: 73%; top: 18.5%" aria-label="Hover preview">
+          <span class="walk-tooltip">Hover a thumbnail to preview the clip</span>
+        </button>
+        <button class="walk-spot flip-down" type="button" style="left: 21%; top: 97%" aria-label="Library stats">
+          <span class="walk-tooltip">Library stats always in view</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== THREE THINGS, DONE WELL ========== -->
+<section id="features" class="three" aria-labelledby="three-title">
+  <div class="wrap">
+    <span class="section-eyebrow">WHAT IT DOES</span>
+    <h2 id="three-title" class="section-title">Three things, done well.</h2>
+    <p class="section-sub">No bloat, no AI gimmicks. Just the parts of a video library that actually move work forward.</p>
+
+    <div class="three-grid">
+
+      <!-- Card 1 — Hover-scrub previews (navy) -->
+      <div class="three-col navy">
+        <div class="three-deco">
+          <img class="wave-bumps" src="assets/three-wave-1.svg" alt="" aria-hidden="true" />
+          <img class="palm" src="assets/three-palm-1.svg" alt="" aria-hidden="true" />
+        </div>
+        <article class="three-card navy">
+          <div>
+            <h3>Hover-scrub previews</h3>
+            <p>2, 3, or 8 frames depending on duration. Sprite-sheets pre-baked. No clicks, no playback, just truth at a glance.</p>
+          </div>
+          <div class="video-frame" data-scrub data-frames="hero">
+            <div class="scrub-stage"></div>
+            <span class="scrub-tape">Hover to scrub</span>
+            <div class="scrub-segs" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Card 2 — Color tags & search (yellow) -->
+      <div class="three-col yellow">
+        <div class="three-deco">
+          <img class="wave-bumps" src="assets/three-wave-2.svg" alt="" aria-hidden="true" />
+          <img class="palm" src="assets/three-palm-2.svg" alt="" aria-hidden="true" />
+        </div>
+        <article class="three-card yellow">
+          <div>
+            <h3>Color tags &amp; search</h3>
+            <p>Drag clips onto color tags, star your favorites, then find anything with FTS5 search, everything flows smoothly, like a wave being ridden.</p>
+          </div>
+          <div class="tags-mock" data-comment-anchor="7040b15b75-div">
+            <img class="tags-illu" src="assets/illu-tags.svg" alt="Sidebar with Favorites, Tags (SpongeBob memes) and Add tag" width="214" height="142" decoding="async" />
+            <img class="tags-star" src="assets/fig-star.png" alt="" aria-hidden="true" width="48" height="48" decoding="async" />
+          </div>
+        </article>
+      </div>
+
+      <!-- Card 3 — Drag into your editor (orange) -->
+      <div class="three-col orange">
+        <div class="three-deco">
+          <img class="wave-bumps" src="assets/three-wave-3.svg" alt="" aria-hidden="true" />
+          <img class="palm" src="assets/three-palm-3.svg" alt="" aria-hidden="true" />
+        </div>
+        <article class="three-card orange">
+          <div>
+            <h3>Drag into your editor</h3>
+            <p>Drop straight into Premiere Pro, DaVinci Resolve, or back to Explorer. OLE metadata is set so the clip lands with the right name in your bin.</p>
+          </div>
+          <div class="editor-vis">
+            <img class="premiere" src="assets/fig-premiere-composite.png" alt="A Reelio clip being dragged into an Adobe Premiere Pro timeline" width="718" height="444" decoding="async" />
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ARCADE ========== -->
+<section class="arcade" id="demo" aria-labelledby="arcade-title">
+  <div class="wrap">
+    <span class="section-eyebrow">TRY IT YOURSELF</span>
+    <h2 id="arcade-title" class="section-title" data-comment-anchor="b7e550de4a-h2">This is how every clip looks in your library.</h2>
+    <p class="section-sub">Three clips. Move your mouse over them. Watch them play. No clicks, no buffering, that's exactly what Reelio does in your library.</p>
+
+    <div class="arcade-grid">
+      <div class="arcade-card">
+        <div class="video-frame" data-scrub data-frames="surf-a">
+          <div class="scrub-stage"></div>
+          <span class="scrub-tape">Hover to scrub</span>
+          <div class="scrub-segs" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="ttl">Sip, relax, repeat</span>
+          <div class="meta-row"><span>11 min</span><span class="dot"></span><span>260 mo</span><span class="dot"></span><span>10/08/2026</span></div>
+        </div>
+      </div>
+      <div class="arcade-card">
+        <div class="video-frame" data-scrub data-frames="surf-b">
+          <div class="scrub-stage"></div>
+          <span class="scrub-tape">Hover to scrub</span>
+          <div class="scrub-segs" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="ttl" data-comment-anchor="bf998b7032-span">Paddle, pop, pray</span>
+          <div class="meta-row"><span>43 min</span><span class="dot"></span><span>46 mo</span><span class="dot"></span><span>10/08/2016</span></div>
+        </div>
+      </div>
+      <div class="arcade-card">
+        <div class="video-frame" data-scrub data-frames="surf-c">
+          <div class="scrub-stage"></div>
+          <span class="scrub-tape">Hover to scrub</span>
+          <div class="scrub-segs" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="ttl">Wax, wait, wipeout</span>
+          <div class="meta-row"><span>24 min</span><span class="dot"></span><span>128 mo</span><span class="dot"></span><span>10/08/2027</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WORKFLOW ========== -->
+<section class="workflow" aria-labelledby="wf-title">
+  <div class="wrap">
+    <span class="section-eyebrow">WORKFLOW</span>
+    <h2 id="wf-title" class="section-title">Drag straight into your editor.</h2>
+    <p class="section-sub">OLE metadata is wired up so your clip lands in it with the correct name, not 'Untitled.mp4' with a question mark.</p>
+
+    <div class="workflow-grid">
+      <div class="editor-card">
+        <span class="pill">Drop in it</span>
+        <div class="logo"><div class="pr-logo">Pr</div></div>
+        <div>
+          <div class="name">Adobe Premiere Pro</div>
+          <div class="sub">name · duration · codec preserved</div>
+        </div>
+      </div>
+      <div class="editor-card">
+        <span class="pill">Drop in it</span>
+        <div class="logo"><img src="assets/fig-davinci.png" alt="DaVinci Resolve" width="1024" height="1024" decoding="async" /></div>
+        <div>
+          <div class="name">DaVinci Resolve</div>
+          <div class="sub">drops into the active bin</div>
+        </div>
+      </div>
+      <div class="editor-card">
+        <span class="pill">Drop in it</span>
+        <div class="logo"><img src="assets/fig-explorer.png" alt="Windows Explorer" width="250" height="225" decoding="async" /></div>
+        <div>
+          <div class="name">Windows Explorer</div>
+          <div class="sub">because old habits stick</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PACKS ========== -->
+<section class="packs" aria-labelledby="packs-title">
+  <div class="wrap">
+    <span class="section-eyebrow">FULL MENU</span>
+    <h2 id="packs-title" class="section-title">Everything Reelio packs.</h2>
+    <p class="section-sub">A focused little tool, but every line below is built and shipping.</p>
+
+    <ul class="packs-list" style="padding-left: 0; list-style: none;">
+      <li class="pack-item"><span class="check">✓</span><span><b>Hover-scrub previews</b> <span class="meta">· 2/3/8 frames adaptive</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Smart thumbnails</b> <span class="meta">· 320×180 WebP, FFmpeg-baked</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Folder tiles</b> <span class="meta">· 2×2 grid or custom folder.jpg</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Color tags</b> <span class="meta">with full CRUD &amp; drag-to-assign</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Favorites</b> <span class="meta">with gold-star pinning</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>FTS5 search</b> <span class="meta">· 200 ms debounce</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Prefix matching</b> <span class="meta">+ AND tokens, bold highlights</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Drag → Premiere / DaVinci / Explorer</b> <span class="meta">with OLE metadata</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>External player</b> <span class="meta">· default, VLC, MPC-HC, MPV auto-detect</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Multi-libraries</b> <span class="meta">· per-library exclusion rules</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Random videos</b><span class="meta">, random folders, recently played</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Light / Dark / System</b> <span class="meta">theme · hot-swap</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Mica window</b> <span class="meta">· Windows 11 native chrome</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Soft-delete 7 days</b> <span class="meta">for unplugged drives</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>3 thumb quality levels</b> <span class="meta">· 120/160/240 px sprites</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>SQLite per library</b> <span class="meta">· move it freely</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>FFmpeg embedded</b> <span class="meta">· LGPL, decode only</span></span></li>
+      <li class="pack-item"><span class="check">✓</span><span><b>Worker pool ≤ 2</b> <span class="meta">· iterative, stack-safe scans</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <span class="section-eyebrow">QUESTIONS</span>
+    <h2 id="faq-title" class="section-title">Stuff you'll ask anyway.</h2>
+
+    <div class="faq-grid">
+      <div class="faq-col">
+        <details class="qa" open>
+          <summary>Does it really stay 100% local?</summary>
+          <p>Yes. Zero cloud, zero telemetry, zero account. Everything sits in reelio/index.db on your computer.</p>
+        </details>
+        <details class="qa">
+          <summary>Will it eat my CPU?</summary>
+          <p>The FFmpeg worker pool is capped at 2 processes. Scans are iterative, not recursive, stack-safe on huge folder trees, and the UI never blocks.</p>
+        </details>
+        <details class="qa">
+          <summary>What if I unplug my external drive?</summary>
+          <p>Nothing, until you ask. Reelio never re-scans on its own, so as long as the drive stays plugged in your clips stay put. The library only changes when you manually trigger a re-scan: at that point Reelio adds any new files it finds at the watched path and removes anything it can no longer reach. Unplug the drive, then run a scan, and those clips disappear from the library. Your video files themselves are never touched.</p>
+        </details>
+      </div>
+      <div class="faq-col">
+        <details class="qa">
+          <summary>Mac / Linux version?</summary>
+          <p>Not yet. Reelio is WinUI 3, Windows-native.</p>
+        </details>
+        <details class="qa">
+          <summary>How much?</summary>
+          <p>One-time payment on the Microsoft Store. No subscription, ever.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section class="cta" id="get" aria-labelledby="cta-title">
+  <span class="can can-1" aria-hidden="true"></span>
+  <span class="can can-2" aria-hidden="true"></span>
+  <span class="can can-3" aria-hidden="true"></span>
+  <div class="cta-inner">
+    <h2 id="cta-title">Crack one open.</h2>
+    <p>Reelio, one-time payment on the Microsoft Store. No subscription, no nonsense.</p>
+    <a class="btn-store" href="#">
+      <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
+      Download on Microsoft Store
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site" style="padding: 20px 0px">
+  <div class="wrap row">
+    <div class="brand-line">
+      <img class="wordmark" src="assets/logo-wordmark-footer.svg" alt="Reelio" />
+      <span>© 2026 · made on Windows, for Windows</span>
+    </div>
+    <div class="links">
+      <a href="#">Privacy (spoiler: local)</a>
+      <a href="mailto:hello@reelio.app">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== HOVER-SCRUB SCRIPT ========== -->
+<script src="script.js"></script>
+
+</body>
+</html>
