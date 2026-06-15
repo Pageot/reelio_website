@@ -5,6 +5,9 @@ Reelio-handoff.zip
 # Local backup of original images created during the image-optimization pass
 _image-opt-backup/
 
+# Claude Code local tooling (preview config, etc.), not part of the website
+.claude/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db

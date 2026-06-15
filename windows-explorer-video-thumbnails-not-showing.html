@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Windows Explorer Not Showing Video Thumbnails? Fix It | Reelio</title>
+<meta name="description" content="Windows Explorer not showing video thumbnails? Here's why MP4 and MKV files show blank icons, how to fix it, and a faster way to preview every clip." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#FFD344" />
+<link rel="canonical" href="https://reelio.in/windows-explorer-video-thumbnails-not-showing.html" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="assets/logoReelio.svg" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Windows Explorer Not Showing Video Thumbnails? How to Fix It" />
+<meta property="og:description" content="Why Windows shows blank icons instead of video previews, every fix that actually works, and a faster way to browse a whole video library." />
+<meta property="og:url" content="https://reelio.in/windows-explorer-video-thumbnails-not-showing.html" />
+<meta property="og:image" content="https://reelio.in/assets/Reelio_SocialsShare.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
+<meta property="og:site_name" content="Reelio" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Windows Explorer Not Showing Video Thumbnails? How to Fix It" />
+<meta name="twitter:description" content="Why Windows shows blank icons instead of video previews, every fix that works, and a faster way to browse your whole video library." />
+<meta name="twitter:image" content="https://reelio.in/assets/Reelio_SocialsShare.jpg" />
+<meta name="twitter:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
+
+<!-- Article structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Windows Explorer Not Showing Video Thumbnails? How to Fix It",
+  "description": "Why Windows Explorer shows blank icons instead of video thumbnails, every fix that actually works for MP4 and MKV files, and a faster way to preview a whole video library.",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "inLanguage": "en",
+  "image": "https://reelio.in/assets/Reelio_SocialsShare.jpg",
+  "mainEntityOfPage": {"@type":"WebPage","@id":"https://reelio.in/windows-explorer-video-thumbnails-not-showing.html"},
+  "author": {"@type":"Organization","name":"Reelio","url":"https://reelio.in/"},
+  "publisher": {"@type":"Organization","name":"Reelio","url":"https://reelio.in/","logo":{"@type":"ImageObject","url":"https://reelio.in/assets/logo-large.png","width":1024,"height":1024}}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Why don't my MKV files show thumbnails in Windows 11?","acceptedAnswer":{"@type":"Answer","text":"Windows 11 has no built-in MKV thumbnail support and ships without some codecs, so .mkv files show a blank icon. Install a thumbnail handler like Icaros, or use a video library app that generates its own previews, to see MKV thumbnails."}},
+    {"@type":"Question","name":"How do I preview a video without opening it in Windows?","acceptedAnswer":{"@type":"Answer","text":"Use PowerToys Peek (Ctrl + Space on a selected file) or QuickLook (Spacebar) for a quick one-at-a-time preview, or use Reelio to hover-scrub previews across your whole library at once without opening a player."}},
+    {"@type":"Question","name":"Why are my video thumbnails black?","acceptedAnswer":{"@type":"Answer","text":"Windows usually grabs the very first frame of a clip, which is often a black fade-in or a slate. Tools that sample multiple frames, or hover-scrub previews, avoid this by showing real frames from across the clip."}}
+  ]
+}
+</script>
+
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/bricolage-grotesque-latin.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-latin.woff2" crossorigin />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site">
+  <div class="wrap row">
+    <a href="index.html#top" class="brand" aria-label="Reelio home">
+      <img class="wordmark" src="assets/logo-wordmark.svg" alt="Reelio" />
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#tour">Tour</a>
+      <a href="index.html#faq">FAQ</a>
+      <a class="btn-store" href="https://apps.microsoft.com/detail/9P04HB3XHT93?cid=web_guide" target="_blank" rel="noopener">
+        <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
+        Download on Microsoft Store
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ========== GUIDE ========== -->
+<main class="legal">
+  <div class="wrap">
+    <a class="legal-back" href="index.html">← Back to Reelio</a>
+
+    <header class="legal-head">
+      <span class="section-eyebrow">GUIDE</span>
+      <h1 class="legal-title">Windows Explorer isn't showing your video thumbnails?</h1>
+      <p class="legal-updated">Updated 15 June 2026</p>
+      <p class="legal-lede">Blank film icons instead of real previews, MKV files that show nothing, no way to tell what a clip is without opening it. Here is why Windows does this, every fix that actually works, and a faster way to browse a whole video library.</p>
+    </header>
+
+    <article class="legal-body">
+      <h2>Why Windows Explorer doesn't show video thumbnails</h2>
+      <p>Windows builds a thumbnail by decoding the first frames of a video. When that fails, you get a generic film icon instead of a preview. The usual culprits:</p>
+      <ul>
+        <li><strong>Thumbnails are turned off.</strong> A setting in Folder Options (or Performance Options) tells Explorer to show plain icons instead of previews. This is the most common cause.</li>
+        <li><strong>A codec is missing.</strong> Windows 11 ships without HEVC and has no native MKV thumbnailer, so <strong>.mkv</strong>, <strong>.hevc</strong> and some <strong>.mov</strong> files show nothing at all.</li>
+        <li><strong>The thumbnail cache is corrupted.</strong> Old or blank thumbnails get stuck and never refresh.</li>
+        <li><strong>The files are on a network drive or a huge folder.</strong> Explorer often gives up generating previews when there are too many files or the drive is remote.</li>
+      </ul>
+
+      <h2>Fix 1: Turn thumbnails back on</h2>
+      <p>In File Explorer, open <strong>View &gt; Options &gt; Folder Options &gt; View</strong> tab and make sure <strong>"Always show icons, never thumbnails"</strong> is unchecked. Then press <strong>Windows + R</strong>, type <strong>SystemPropertiesPerformance</strong>, and confirm <strong>"Show thumbnails instead of icons"</strong> is ticked. This alone fixes most cases for common formats like MP4.</p>
+
+      <h2>Fix 2: Install the missing video codecs</h2>
+      <p>If MP4 files preview but MKV or HEVC files don't, you are missing a codec. Install <strong>HEVC Video Extensions</strong> from the Microsoft Store for H.265 footage. For MKV and other formats, a thumbnail handler like <strong>Icaros</strong> or <strong>Media Preview</strong> (both built on FFmpeg) adds previews Windows can't generate on its own. They are free, but they are shell extensions that can slow Explorer down on big folders.</p>
+
+      <h2>Fix 3: Clear the thumbnail cache</h2>
+      <p>If thumbnails are stuck or stubbornly blank, the cache may be corrupted. Open <strong>Disk Cleanup</strong>, tick <strong>"Thumbnails"</strong>, and clear it (or delete the <strong>thumbcache_*.db</strong> files in your AppData folder). Windows rebuilds the cache automatically as you browse.</p>
+
+      <h2>Fix 4: Preview a clip without opening it</h2>
+      <p>To peek at a video without launching a player, install Microsoft <strong>PowerToys</strong> and use <strong>Peek</strong> (Ctrl + Space on a selected file), or a tool like <strong>QuickLook</strong> (Spacebar). Both pop up a quick preview window, one file at a time.</p>
+
+      <h2>Where these fixes fall short</h2>
+      <p>Even when they work, you are still looking at a single static frame per file, usually the very first frame, which is often a black fade-in or a slate. You can preview one clip at a time, there are no tags, no search across your footage, and on a folder with hundreds or thousands of clips Explorer becomes slow and clumsy. For anyone with a real video library, home videos, b-roll, a stock of footage, that isn't browsing, it's guesswork.</p>
+
+      <h2>A faster way: a real video library with hover previews</h2>
+      <p>This is exactly the gap <strong>Reelio</strong> fills. Instead of one static thumbnail, you hover over a clip and it scrubs through its frames, so you preview what is actually inside it without ever opening a player. Tag clips by color, search your whole library in an instant, and drag a clip straight into <strong>Adobe Premiere Pro</strong>, <strong>DaVinci Resolve</strong> or back into Explorer with its name and metadata intact.</p>
+      <p>Reelio reads your existing folders, builds proper previews with a bundled copy of FFmpeg, and runs <strong>100% local</strong>, no cloud, no account, no telemetry. Free for up to 25 clips, then a one-time payment for unlimited. The video library Windows Explorer never gave you.</p>
+
+      <div class="guide-cta">
+        <a class="btn-store" href="https://apps.microsoft.com/detail/9P04HB3XHT93?cid=web_guide" target="_blank" rel="noopener">
+          <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
+          Get Reelio for Windows
+        </a>
+      </div>
+
+      <div class="guide-features">
+        <div class="three-grid">
+          <div class="three-col navy">
+            <article class="three-card navy">
+              <div>
+                <h3>Hover-scrub previews</h3>
+                <p>2, 3, or 8 frames depending on duration. Sprite-sheets pre-baked. No clicks, no playback, just truth at a glance.</p>
+              </div>
+              <div class="video-frame" data-scrub data-frames="hero" role="img" aria-label="Hover-scrub preview: move the mouse across a video thumbnail to scrub through its frames and preview the clip without playing it">
+                <div class="scrub-stage"></div>
+                <span class="scrub-tape">Hover to scrub</span>
+                <div class="scrub-segs" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="three-col yellow">
+            <article class="three-card yellow">
+              <div>
+                <h3>Color tags &amp; search</h3>
+                <p>Drag clips onto color tags, star your favorites, then find anything with instant search. Everything flows smoothly, like a wave being ridden.</p>
+              </div>
+              <div class="tags-mock">
+                <img class="tags-illu" src="assets/illu-tags.svg" alt="Reelio sidebar with color tags and a Favorites list for grouping video clips." width="214" height="142" decoding="async" />
+                <img class="tags-star" src="assets/fig-star.png" alt="" aria-hidden="true" width="48" height="48" decoding="async" />
+              </div>
+            </article>
+          </div>
+          <div class="three-col orange">
+            <article class="three-card orange">
+              <div>
+                <h3>Drag into your editor</h3>
+                <p>Drop straight into Premiere Pro, DaVinci Resolve, or back to Explorer. OLE metadata is set so the clip lands with the right name in your bin.</p>
+              </div>
+              <div class="editor-vis">
+                <img class="premiere" src="assets/fig-premiere-composite.png" alt="Dragging a Reelio clip into an Adobe Premiere Pro timeline with its name and metadata intact." width="718" height="444" decoding="async" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <h2>Frequently asked questions</h2>
+      <p><strong>Why don't my MKV files show thumbnails in Windows 11?</strong></p>
+      <p>Windows 11 has no built-in MKV thumbnail support and ships without some codecs, so .mkv files show a blank icon. Install a thumbnail handler like Icaros, or use a video library app that generates its own previews, to see MKV thumbnails.</p>
+      <p><strong>How do I preview a video without opening it in Windows?</strong></p>
+      <p>Use PowerToys Peek (Ctrl + Space) or QuickLook (Spacebar) for a quick one-at-a-time preview, or use Reelio to hover-scrub previews across your whole library at once without opening a player.</p>
+      <p><strong>Why are my video thumbnails black?</strong></p>
+      <p>Windows usually grabs the very first frame of a clip, which is often a black fade-in or a slate. Tools that sample multiple frames, or hover-scrub previews, avoid this by showing real frames from across the clip.</p>
+    </article>
+  </div>
+</main>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site" style="padding: 20px 0px">
+  <div class="wrap row">
+    <div class="brand-line">
+      <a href="index.html#top" aria-label="Reelio home">
+        <img class="wordmark" src="assets/logo-wordmark-footer.svg" alt="Reelio" />
+      </a>
+      <span>© 2026 · made on Windows, for Windows</span>
+    </div>
+    <div class="links">
+      <a href="windows-explorer-video-thumbnails-not-showing.html" aria-current="page">No video thumbnails in Windows?</a>
+      <a href="privacy.html">Privacy (spoiler: local)</a>
+      <a href="mailto:lesminitels@protonmail.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== HOVER-SCRUB SCRIPT ========== -->
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,3 +1,57 @@
+/* ============================== FONTS (self-hosted) ================= */
+/* Variable woff2 (latin + latin-ext) self-hosted from reelio.in. One file
+   per family/subset covers the full weight range, so no third-party request. */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/bricolage-grotesque-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(assets/fonts/bricolage-grotesque-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url(assets/fonts/geist-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url(assets/fonts/geist-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/jetbrains-mono-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/jetbrains-mono-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ============================== TOKENS ============================== */
 :root {
   --navy: #050671;
@@ -101,7 +155,7 @@ header.site .row {
   overflow: hidden;
 }
 
-/* HERO — top-left big card */
+/* HERO, top-left big card */
 .hero-card.big {
   padding: 32px 32px 24px;
   display: flex; flex-direction: column;
@@ -115,7 +169,7 @@ header.site .row {
   font-size: 60px;
   line-height: 1;
   letter-spacing: -0.025em;
-  color: var(--ink);
+  color: var(--navy);
   margin: 0 0 16px;
   max-width: 720px;
 }
@@ -144,7 +198,7 @@ header.site .row {
   left: calc(794.667 / 1184 * 100% - 110px);
 }
 
-/* HERO — top-right video card */
+/* HERO, top-right video card */
 .hero-card.video {
   padding: 16px;
   display: flex; flex-direction: column;
@@ -247,7 +301,7 @@ header.site .row {
   background: #65696a;
 }
 
-/* HERO — bottom row */
+/* HERO, bottom row */
 .hero-bottom {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -289,7 +343,8 @@ header.site .row {
 /* Sun + 100% local card */
 .local-card { display: flex; align-items: center; gap: 16px; }
 .local-card .sunset { width: 94px; height: 94px; flex-shrink: 0; }
-.local-card h3 {
+.local-card .card-h {
+  display: block;
   font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700; font-size: 24px;
   margin: 0 0 4px;
@@ -365,7 +420,9 @@ header.site .row {
   display: flex; flex-direction: column; justify-content: center;
   gap: 4px;
 }
-.organize-card .text h3 {
+.organize-card .text .card-h {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700; font-size: 24px; color: var(--ink);
   margin: 0; line-height: 1;
 }
@@ -583,7 +640,7 @@ section { padding: 56px 0; }
 .three-col.yellow { color: var(--yellow); }
 .three-col.orange { color: var(--orange); }
 
-/* Card 1 — Hover-scrub previews thumbnails strip */
+/* Card 1, Hover-scrub previews thumbnails strip */
 .thumbs-strip {
   display: flex; gap: 2px;
   padding: 2px;
@@ -597,7 +654,7 @@ section { padding: 56px 0; }
   border-radius: 2px;
 }
 
-/* Card 2 — Color tags sidebar mock (reuses the Organize illustration) */
+/* Card 2, Color tags sidebar mock (reuses the Organize illustration) */
 .tags-mock {
   position: relative;
   background: #F9F9F9;
@@ -625,7 +682,7 @@ section { padding: 56px 0; }
   pointer-events: none;
 }
 
-/* Card 3 — Drag into editor: composite bleeds to bottom-right card edge */
+/* Card 3, Drag into editor: composite bleeds to bottom-right card edge */
 .three-card.orange { overflow: hidden; }
 .editor-vis {
   position: relative;
@@ -756,7 +813,8 @@ section { padding: 56px 0; }
   line-height: 1.45;
   color: var(--ink);
 }
-.pack-item .check {
+.pack-item .check,
+.price-list .check {
   width: 22px; height: 22px;
   border-radius: 50%;
   background: var(--yellow);
@@ -861,19 +919,19 @@ details.qa p {
 }
 .cta .can {
   position: absolute;
-  width: 260px; height: 260px;
+  width: 200px; height: 200px;
   background-image: url("assets/reelio-logo.svg");
   background-size: contain;
   background-repeat: no-repeat;
   pointer-events: none;
   z-index: 1;
 }
-/* Left logo: peeks in from the left edge */
-.cta .can-1 { left: -80px;  bottom: 22%; transform: rotate(-15deg); }
-/* Right logo: peeks in from the right edge */
-.cta .can-2 { right: -80px; bottom: 22%; transform: rotate(15deg); }
+/* Left logo: tucked into the bottom-left corner, tilted out, rising from below */
+.cta .can-1 { left: 22%; margin-left: -130px; bottom: -90px; transform: rotate(20deg); }
+/* Right logo: mirror of the left, bottom-right corner */
+.cta .can-2 { left: 78%; margin-left: -130px; bottom: -90px; transform: rotate(-31deg); }
 /* Center logo: bottom-anchored, only the top peeks up */
-.cta .can-3 { left: 50%; bottom: -140px; transform: translateX(-50%); }
+.cta .can-3 { left: 50%; margin-left: -130px; bottom: -145px; transform: rotate(-10deg); }
 
 /* ============================== FOOTER ============================== */
 footer.site {
@@ -896,6 +954,11 @@ footer .brand-line img.wordmark {
   display: block;
   filter: none;
 }
+footer .brand-line a {
+  display: inline-flex;
+  transition: opacity 0.15s ease;
+}
+footer .brand-line a:hover { opacity: 0.82; }
 footer .brand-line span {
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
@@ -944,4 +1007,173 @@ footer .links a:hover { color: var(--yellow); }
 .workflow :focus-visible,
 footer.site :focus-visible {
   outline-color: var(--yellow);
+}
+
+/* ============================== LEGAL / PROSE ====================== */
+.legal {
+  background: var(--canvas);
+  padding: 56px 0 88px;
+}
+.legal .wrap { max-width: 760px; }
+.legal-back {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+.legal-back:hover { color: var(--navy); }
+.legal-head {
+  border-bottom: 1px solid var(--navy);
+  padding-bottom: 28px;
+}
+.legal-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin: 10px 0 0;
+}
+.legal-updated {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 16px 0 0;
+}
+.legal-lede {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 18px 0 0;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.legal-body h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin: 40px 0 0;
+}
+.legal-body p,
+.legal-body li {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+.legal-body p { margin: 12px 0 0; }
+.legal-body ul { margin: 12px 0 0; padding-left: 22px; }
+.legal-body li { margin-top: 6px; }
+.legal-body li::marker { color: var(--orange); }
+.legal-body strong { color: var(--navy); font-weight: 700; }
+.legal-body a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+.legal-body a:hover { text-decoration-color: var(--navy); }
+
+@media (max-width: 1100px) {
+  .legal-title { font-size: 38px; }
+}
+
+/* Feature cards embedded inside a guide/article: break out wider than the 760px prose */
+.guide-features {
+  width: min(92vw, 980px);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 36px 0 12px;
+}
+.guide-features .three-grid { gap: 28px; margin-top: 0; align-items: start; }
+@media (max-width: 1100px) {
+  .guide-features .three-grid { gap: 40px; }
+}
+/* CTA button inside the guide prose: undo the .legal-body link styling, center it */
+.legal-body a.btn-store { color: var(--paper); text-decoration: none; }
+.legal-body a.btn-store:hover { color: var(--paper); }
+.guide-cta { text-align: center; margin: 32px 0 4px; }
+
+/* ============================== PRICING =========================== */
+.pricing { background: var(--canvas); padding: 56px 0 64px; }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+  align-items: stretch;
+}
+.price-card {
+  position: relative;
+  background: var(--paper);
+  border: 2px solid var(--navy);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 0 var(--navy);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.price-card.unlimited { border-color: var(--orange); box-shadow: 0 8px 0 var(--orange); }
+.price-badge {
+  position: absolute; top: -14px; right: 24px;
+  background: var(--yellow); border: 2px solid var(--navy); border-radius: 999px;
+  padding: 4px 12px;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 11px;
+  letter-spacing: 0.08em; color: var(--navy);
+  transform: rotate(-2deg);
+}
+.price-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.price-card.unlimited .price-eyebrow { color: var(--orange); }
+.price-amount { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; }
+.price-num {
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 56px;
+  line-height: 1; letter-spacing: -0.025em; color: var(--navy);
+}
+.price-per { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--ink-soft); }
+.price-note {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 14px; line-height: 1.4;
+  color: var(--ink-soft); margin: 10px 0 0;
+}
+.price-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.price-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; line-height: 1.4; color: var(--ink);
+}
+.price-list li b { font-weight: 700; color: var(--navy); }
+.price-card .btn-store { width: 100%; justify-content: center; height: 42px; font-size: 15px; }
+.price-card .btn-store:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.price-fineprint {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-soft);
+  text-align: center; margin: 28px 0 0;
+}
+
+@media (max-width: 1100px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .price-card { padding: 28px 22px; }
+  /* Let the store button wrap so it can't force a min-content overflow on narrow phones */
+  .price-card .btn-store {
+    white-space: normal;
+    height: auto;
+    min-height: 42px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    line-height: 1.25;
+  }
 }
