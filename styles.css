@@ -130,10 +130,10 @@ header.site .row {
 .nav-links a {
   font-family: 'Geist', sans-serif;
   font-size: 14px;
-  color: var(--ink);
+  color: var(--navy);
   font-weight: 500;
 }
-.nav-links a:hover { color: var(--navy); }
+.nav-links a:hover { color: var(--orange); }
 .nav-links a.btn-store { color: var(--paper); }
 .nav-links a.btn-store:hover { color: var(--paper); }
 @media (max-width: 900px) { .nav-links a:not(.btn-store) { display: none; } }
@@ -172,6 +172,8 @@ header.site .row {
   color: var(--navy);
   margin: 0 0 16px;
   max-width: 720px;
+  position: relative;
+  z-index: 2;
 }
 .hero-card.big h1 .orange { color: var(--orange); }
 .hero-card.big p {
@@ -181,6 +183,18 @@ header.site .row {
   max-width: 460px;
   margin: 0 0 24px;
 }
+/* The hero CTA is an intentional exception to the shared navy .btn-store: the
+   inverted colorway (yellow fill like the scrub label, navy text/icon) and a
+   larger size, on every screen size. */
+.hero-card.big .btn-store {
+  height: 44px;
+  padding: 0 28px;
+  background: var(--yellow);
+  color: var(--navy);
+}
+.hero-card.big .btn-store svg { width: 22px; height: 22px; }
+/* Keep the yellow fill steady on hover (the shared style brightens it). */
+.hero-card.big .btn-store:hover { filter: none; }
 .hero-card.big .wave-deco {
   position: absolute;
   right: -10px; bottom: -10px;
@@ -194,7 +208,9 @@ header.site .row {
   width: 140px;
   height: auto;
   pointer-events: none;
-  z-index: 2;
+  /* Sits above the card surface but below the title text (which is lifted to
+     z-index 2), so the can tucks between the card and the heading. */
+  z-index: 1;
   left: calc(794.667 / 1184 * 100% - 110px);
 }
 
@@ -570,6 +586,11 @@ section { padding: 56px 0; }
 .walk-spot.is-active .walk-tooltip,
 .walk-spot:hover .walk-tooltip,
 .walk-spot:focus-visible .walk-tooltip { opacity: 1; filter: blur(0); }
+/* Lift the active spot's whole stacking context so its tooltip paints above the
+   other dots, otherwise a dot later in the DOM renders on top of the callout. */
+.walk-spot.is-active,
+.walk-spot:hover,
+.walk-spot:focus-visible { z-index: 5; }
 .walk-spot:hover::after { animation-play-state: paused; opacity: 0; }
 .walk-spot.flip-down .walk-tooltip { transform: translate(-50%, 28px); }
 .walk-spot.align-left .walk-tooltip { left: 0; transform: translate(0, calc(-100% - 18px)); }
@@ -976,6 +997,9 @@ footer .links a:hover { color: var(--yellow); }
 /* ============================== RESPONSIVE ========================== */
 @media (max-width: 1100px) {
   .hero-grid { grid-template-columns: 1fr; }
+  /* Single column: the desktop calc() puts the can over the title, so anchor it
+     to the top-right corner of the big card instead. */
+  .hero-grid .can-deco { left: auto; right: 24px; top: -28px; }
   .hero-bottom { grid-template-columns: 1fr; }
   .three-grid { grid-template-columns: 1fr; gap: 60px; }
   .workflow-grid { grid-template-columns: 1fr; }
@@ -985,6 +1009,45 @@ footer .links a:hover { color: var(--yellow); }
   .cta h2 { font-size: 56px; }
   .section-title { font-size: 38px; }
   .hero-card.big h1 { font-size: 42px; }
+}
+
+/* Narrow phones: match the scrub card's 16px padding and let the card stay
+   compact, vertical space matters here. The wave is allowed to sit behind the
+   Download button (button lifted above it) so we don't pad the card taller. */
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  /* Logo and the lone store button fill the bar at phone widths; a flex gap
+     guarantees a 4px breathing space between them without biasing either. */
+  header.site .row { gap: 4px; }
+  .hero { padding: 24px 0 0; }
+  .hero-card.big { padding: 16px; }
+  .hero-card.big .btn-store { position: relative; z-index: 1; }
+  .hero-card.big .wave-deco { width: 220px; }
+  .hero-grid .can-deco { width: 116px; right: -34px; top: -38px; }
+  /* Get phones to the product UI faster: drop the three stat cards and the
+     scrolling marquee from the top of the page. */
+  .hero-bottom,
+  .marquee { display: none; }
+  /* Hide the tour heading on phones to surface the app screenshot sooner. */
+  #tour-title { display: none; }
+  /* Re-spread the CTA background cans for the narrower phone canvas. */
+  .cta .can-1 { margin-left: -188px; }
+  .cta .can-2 { margin-left: -12px; }
+  .cta .can-3 { margin-left: -108px; }
+}
+
+/* Tour callouts on phones: the longest labels run off the right edge once the
+   screenshot is this narrow. Let them wrap inside a capped width while keeping
+   each one anchored to its own dot (align-left/center/right still apply). */
+@media (max-width: 480px) {
+  .walk-tooltip {
+    white-space: normal;
+    width: max-content;
+    max-width: 240px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 14px;
+  }
 }
 
 /* ===================== PRODUCTION A11Y ENHANCEMENTS ===================== */
