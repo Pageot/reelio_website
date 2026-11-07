@@ -1,0 +1,23 @@
+baseURL = "https://reelio.ch/docs/"
+locale = "en"
+title = "Reelio docs"
+disableKinds = ["taxonomy", "term", "RSS", "404"]
+enableRobotsTXT = false
+uglyURLs = false
+
+[sitemap]
+  changeFreq = "monthly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[markup.goldmark.parser.attribute]
+  block = true
+
+[params]
+  description = "How to use Reelio, the video library app for Windows: hover-scrub previews, custom covers, tags, search, thumbnails and settings, explained page by page."
+  verified = "1.3.0.0"
+  storeURL = "https://apps.microsoft.com/detail/9P04HB3XHT93?cid=web_docs"
+  contact = "mailto:lesminitels@protonmail.com"

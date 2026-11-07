@@ -13,3 +13,9 @@ _image-opt-backup/
 Thumbs.db
 desktop.ini
 *~
+
+# Docs build output (tools/build_site.py, Hugo)
+_site/
+docs-src/public/
+docs-src/resources/_gen/
+docs-src/.hugo_build.lock

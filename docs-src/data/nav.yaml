@@ -1,0 +1,16 @@
+# Sidebar groups and page order. This order also drives the previous / next links.
+# Keep in sync with PAGES in tools/test_site.py.
+- group: "Getting started"
+  pages: [install, free-vs-premium]
+- group: "Covers & previews"
+  pages: [hover-scrub, video-covers, folder-thumbnails, img-slideshow, vertical-videos]
+- group: "Browsing"
+  pages: [tabs-and-navigation, search, sort-and-views, favorites-and-quick-views, video-player, drag-into-your-editor]
+- group: "Organizing"
+  pages: [tags]
+- group: "Thumbnails"
+  pages: [quality-and-speed, update-and-regenerate, failed-and-corrupted]
+- group: "Libraries & storage"
+  pages: [libraries, nas-and-external-drives, backup-and-move-library]
+- group: "Reference"
+  pages: [settings, keyboard-and-mouse, formats-and-file-names, troubleshooting]
