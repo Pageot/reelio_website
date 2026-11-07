@@ -1,0 +1,31 @@
+{{- /*
+Shortcut table. One line per row: `KEYS | description`.
+In KEYS, tokens are separated by spaces; a token joined by "+" becomes one <kbd> per key ("Ctrl+Shift+Tab").
+The words "or", "to", "then" and "/" stay plain text. An underscore inside a key shows as a space ("Side_button").
+The description is inline Markdown.
+*/ -}}
+{{- $connectors := slice "or" "to" "then" "/" "," -}}
+<div class="kbd-table">
+{{- range split (trim .Inner "\n ") "\n" }}
+  {{- $line := trim . " " }}
+  {{- if $line }}
+    {{- $parts := split $line "|" }}
+    {{- if ne (len $parts) 2 }}{{ errorf "keys shortcode: expected `KEYS | description`, got %q" $line }}{{ end }}
+    {{- $keys := trim (index $parts 0) " " }}
+    {{- $desc := trim (index $parts 1) " " }}
+  <div class="kbd-row">
+    <div class="kbd-keys">
+    {{- range $t := split $keys " " }}
+      {{- if $t }}
+        {{- if in $connectors $t }}<span class="plus">{{ $t }}</span>
+        {{- else }}
+          {{- range $k, $key := split $t "+" }}{{ if $k }}<span class="plus" aria-hidden="true">+</span>{{ end }}<kbd>{{ replace $key "_" " " }}</kbd>{{ end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    </div>
+    <div class="kbd-desc">{{ $.Page.RenderString $desc }}</div>
+  </div>
+  {{- end }}
+{{- end }}
+</div>

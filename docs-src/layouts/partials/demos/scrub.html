@@ -1,0 +1,20 @@
+{{- /* Hover-scrub demo: a tile whose picture follows the pointer's horizontal position, like a Reelio video tile.
+     Frame counts and the resting frame follow the app (2 / 3 / 8 frames, resting = middle frame). */ -}}
+{{- $frames := slice -}}
+{{- range seq 8 }}{{ $frames = $frames | append (printf "/assets/surf-frame-%02d.jpg" .) }}{{ end -}}
+<div class="demo-scrub" data-demo="scrub" data-frames="{{ delimit $frames "," }}">
+  <div class="demo-tile" tabindex="0" role="img" aria-label="Demo video tile. Move the pointer across it, or use the Left and Right arrow keys, to scrub through the clip.">
+    <img class="demo-frame" src="{{ index $frames 4 }}" alt="" aria-hidden="true" width="740" height="416" />
+    <span class="demo-cap" aria-live="polite">Resting image</span>
+  </div>
+  <div class="demo-zones" aria-hidden="true"></div>
+  <div class="demo-controls" role="group" aria-label="Clip length">
+    <span class="demo-label">Clip length</span>
+    <button type="button" data-frames-count="2" aria-pressed="false">Under 30 s</button>
+    <button type="button" data-frames-count="3" aria-pressed="false">30 s to 2 min</button>
+    <button type="button" data-frames-count="8" aria-pressed="true">2 min or longer</button>
+  </div>
+  <noscript><p class="demo-noscript">This demo needs JavaScript. Without it, the tile shows its resting image.</p></noscript>
+</div>
+{{- $js := resources.Get "js/scrub-demo.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>

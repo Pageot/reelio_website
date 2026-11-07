@@ -1,0 +1,18 @@
+{{- /* Image with optional numbered pins: pins="x1,y1;x2,y2" in percent of the image. */ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $alt }}{{ errorf "figure shortcode in %s: alt is required" .Page.File.Path }}{{ end -}}
+<figure class="figure">
+  <div class="figure-frame">
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }} />
+    {{- with .Get "pins" }}
+      {{- range $i, $p := split . ";" }}
+        {{- $xy := split $p "," }}
+    <span class="pin" style="left: {{ index $xy 0 | safeCSS }}%; top: {{ index $xy 1 | safeCSS }}%;" aria-hidden="true">{{ add $i 1 }}</span>
+      {{- end }}
+    {{- end }}
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ $.Page.RenderString . }}</figcaption>
+  {{- end }}
+</figure>
