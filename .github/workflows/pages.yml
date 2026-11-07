@@ -1,0 +1,53 @@
+name: Deploy site to GitHub Pages
+
+# Builds the marketing site (copied as-is) plus the Hugo docs into _site/, tests the result, and publishes it.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4.2.2
+
+      - name: Install Hugo extended (version from docs-src/.hugo-version)
+        run: |
+          HUGO_VERSION="$(tr -d '[:space:]' < docs-src/.hugo-version)"
+          curl -fsSL -o "${RUNNER_TEMP}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${RUNNER_TEMP}/hugo.deb"
+          hugo version
+
+      - name: Build
+        run: python3 tools/build_site.py
+
+      - name: Test
+        run: python3 -m unittest tools/test_site.py -v
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5

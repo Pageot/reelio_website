@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://reelio.ch/sitemap.xml
+Sitemap: https://reelio.ch/docs/sitemap.xml
