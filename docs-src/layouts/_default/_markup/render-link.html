@@ -1,0 +1,15 @@
+{{- /* Links to /docs/<slug>/ are resolved through Hugo: a page that is not written yet renders as plain text
+     (class pending-link, caught by test_no_pending_links), never as a dead link. */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- if and (not $u.IsAbs) (hasPrefix $u.Path "/docs/") -}}
+  {{- $slug := trim (strings.TrimPrefix "/docs/" $u.Path) "/" -}}
+  {{- $p := site.Home -}}
+  {{- if $slug }}{{ $p = site.GetPage (printf "/%s" $slug) }}{{ end -}}
+  {{- with $p -}}
+<a href="{{ .RelPermalink }}{{ with $u.Fragment }}#{{ . }}{{ end }}">{{ $.Text }}</a>
+  {{- else -}}
+<span class="pending-link">{{ $.Text }}</span>
+  {{- end -}}
+{{- else -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $u.IsAbs }} target="_blank" rel="noopener"{{ end }}>{{ .Text }}</a>
+{{- end -}}

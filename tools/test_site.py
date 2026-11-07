@@ -234,6 +234,13 @@ class SiteTests(unittest.TestCase):
                 with self.subTest(page=str(path.relative_to(SITE)), url=url):
                     self.assertTrue(target.is_file(), f"<{tag} {attr}={url}> does not resolve")
 
+    def test_no_pending_links(self):
+        # a sidebar entry or a /docs/ link whose page is not written yet renders as plain text; none may ship
+        for path in docs_html_files():
+            with self.subTest(page=str(path.relative_to(SITE))):
+                classes = [a.get("class", "").split() for _, a in parse(path).tags]
+                self.assertFalse([c for c in classes if "pending" in c or "pending-link" in c])
+
     def test_no_em_dash_in_docs(self):
         for path in docs_html_files():
             with self.subTest(page=str(path.relative_to(SITE))):
