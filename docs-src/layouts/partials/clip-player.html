@@ -1,0 +1,11 @@
+{{- /* Muted looping clip. Never autoplays from the markup: docs.js starts it when visible, unless prefers-reduced-motion. Takes a map {mp4?, webm, poster, alt}. */ -}}
+<figure class="media-frame clip" data-clip>
+  <video muted loop playsinline preload="none"{{ with .poster }} poster="{{ . }}"{{ end }} aria-label="{{ .alt }}">
+    {{- with .webm }}<source src="{{ . }}" type="video/webm" />{{ end }}
+    {{- with .mp4 }}<source src="{{ . }}" type="video/mp4" />{{ end }}
+  </video>
+  <button class="clip-toggle" type="button" aria-pressed="false">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 2.5v11l9-5.5z"/></svg>
+    <span>Play</span>
+  </button>
+</figure>

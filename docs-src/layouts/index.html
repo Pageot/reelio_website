@@ -1,0 +1,27 @@
+{{ define "main" }}
+<nav class="crumb" aria-label="Breadcrumb"><span aria-current="page">Docs</span></nav>
+<h1>{{ .Params.heading | default .Title | default "Reelio docs" }}</h1>
+{{- with .Params.lead }}
+<p class="lead">{{ . | markdownify }}</p>
+{{- end }}
+{{- with .Content }}
+<div class="prose">
+{{ . }}
+</div>
+{{- end }}
+{{- range hugo.Data.nav }}
+<section class="home-group" id="{{ .group | anchorize }}" aria-labelledby="{{ .group | anchorize }}-h">
+  <h2 class="home-group-h" id="{{ .group | anchorize }}-h">{{ .group }}</h2>
+  <div class="related-grid">
+  {{- range .pages }}
+    {{- with site.GetPage (printf "/%s" .) }}
+    <a class="rel-card" href="{{ .RelPermalink }}">
+      <div class="t">{{ .Params.navTitle | default .Title }} <span class="arw" aria-hidden="true">→</span></div>
+      <div class="d">{{ .Description }}</div>
+    </a>
+    {{- end }}
+  {{- end }}
+  </div>
+</section>
+{{- end }}
+{{ end }}

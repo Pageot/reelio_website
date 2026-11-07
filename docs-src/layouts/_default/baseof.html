@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{{ partial "header.html" . }}
+<div class="sidebar-scrim" id="scrim" aria-hidden="true"></div>
+<div class="docs-shell">
+{{ partial "sidebar.html" . }}
+  <main class="content" id="main">
+    <div class="content-inner">
+{{ block "main" . }}{{ end }}
+    </div>
+  </main>
+</div>
+{{ partial "footer.html" . }}
+{{ $js := resources.Get "js/docs.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ block "scripts" . }}{{ end }}
+</body>
+</html>

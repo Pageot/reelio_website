@@ -1,0 +1,15 @@
+{{- /* Server-rendered from data/nav.yaml. A slug whose page is not written yet renders as plain text, never as a dead link. */ -}}
+{{- $cur := .RelPermalink -}}
+<aside class="sidebar" id="sidebar" aria-label="Documentation navigation">
+{{- range hugo.Data.nav }}
+  <div class="nav-group">{{ .group }}</div>
+  {{- range .pages }}
+    {{- with site.GetPage (printf "/%s" .) }}
+      {{- $active := eq .RelPermalink $cur }}
+  <a class="nav-item{{ if $active }} active{{ end }}" href="{{ .RelPermalink }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Params.navTitle | default .Title }}</a>
+    {{- else }}
+  <span class="nav-item pending">{{ . | humanize }}</span>
+    {{- end }}
+  {{- end }}
+{{- end }}
+</aside>

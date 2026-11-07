@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "crumb.html" . }}
+<h1>{{ .Title }}</h1>
+{{- with .Params.lead }}
+<p class="lead">{{ . | markdownify }}</p>
+{{- else }}{{ errorf "%s: front matter `lead` is missing" .File.Path }}{{ end }}
+{{ partial "badges.html" . }}
+{{ partial "media.html" . }}
+<div class="prose">
+{{ .Content }}
+</div>
+{{ partial "related.html" . }}
+{{ partial "prevnext.html" . }}
+{{- with .Params.verified }}
+<p class="verified">Verified with Reelio {{ . }}</p>
+{{- else }}{{ errorf "%s: front matter `verified` is missing" .File.Path }}{{ end }}
+{{ end }}

@@ -1,0 +1,13 @@
+{{- $pages := slice -}}
+{{- range .Params.related }}{{ with site.GetPage (printf "/%s" .) }}{{ $pages = $pages | append . }}{{ end }}{{ end -}}
+{{- with $pages }}
+<h2 class="related-h">Related</h2>
+<div class="related-grid">
+{{- range . }}
+  <a class="rel-card" href="{{ .RelPermalink }}">
+    <div class="k">{{ partial "group-of.html" .File.ContentBaseName }}</div>
+    <div class="t">{{ .Params.navTitle | default .Title }} <span class="arw" aria-hidden="true">→</span></div>
+  </a>
+{{- end }}
+</div>
+{{- end }}

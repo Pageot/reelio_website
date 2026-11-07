@@ -1,0 +1,42 @@
+{{- /* Optional image zone under the title: front matter `media.type` = image | carousel | clip | demo. */ -}}
+{{- with .Params.media -}}
+{{- $type := .type -}}
+{{- if eq $type "image" -}}
+  {{- with index .items 0 }}
+<figure class="media-frame">
+  <img src="{{ .src }}" alt="{{ .alt }}" width="{{ .width | default 1600 }}" height="{{ .height | default 900 }}" />
+  {{- with .caption }}<figcaption class="media-cap">{{ . }}</figcaption>{{ end }}
+</figure>
+  {{- end }}
+{{- else if eq $type "carousel" -}}
+<div class="carousel" data-carousel aria-roledescription="carousel" aria-label="{{ $.Title }}, screenshots">
+  <div class="carousel-viewport">
+    <div class="carousel-track">
+    {{- range $i, $item := .items }}
+      <figure class="carousel-slide" aria-roledescription="slide" aria-label="{{ add $i 1 }} of {{ len $.Params.media.items }}">
+        <img src="{{ $item.src }}" alt="{{ $item.alt }}"{{ if gt $i 0 }} loading="lazy"{{ end }} />
+        {{- with $item.caption }}<figcaption class="cap">{{ . }}</figcaption>{{ end }}
+      </figure>
+    {{- end }}
+    </div>
+    <button class="carousel-btn prev" type="button" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carousel-btn next" type="button" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <div class="carousel-dots">
+  {{- range $i, $item := .items }}
+    <button type="button" aria-label="Go to image {{ add $i 1 }}"></button>
+  {{- end }}
+  </div>
+</div>
+{{- else if eq $type "clip" -}}
+  {{ partial "clip-player.html" .clip }}
+{{- else if eq $type "demo" -}}
+  {{ partial (printf "demos/%s.html" .demo) $ }}
+{{- else -}}
+  {{- errorf "%s: unknown media.type %q" $.File.Path $type -}}
+{{- end -}}
+{{- end -}}

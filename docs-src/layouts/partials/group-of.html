@@ -1,0 +1,6 @@
+{{- /* Returns the nav.yaml group label of a page slug, or "". */ -}}
+{{- $group := "" -}}
+{{- range hugo.Data.nav -}}
+  {{- if in .pages $ -}}{{- $group = .group -}}{{- end -}}
+{{- end -}}
+{{- return $group -}}

@@ -1,0 +1,20 @@
+{{- /* Previous / next follow the nav.yaml order. */ -}}
+{{- $slugs := slice -}}
+{{- range hugo.Data.nav }}{{ range .pages }}{{ $slugs = $slugs | append . }}{{ end }}{{ end -}}
+{{- $slug := .File.ContentBaseName -}}
+{{- $i := -1 -}}
+{{- range $k, $s := $slugs }}{{ if eq $s $slug }}{{ $i = $k }}{{ end }}{{ end -}}
+{{- if ge $i 0 }}
+<nav class="prevnext" aria-label="Previous and next pages">
+  {{- if gt $i 0 }}
+    {{- with site.GetPage (printf "/%s" (index $slugs (sub $i 1))) }}
+  <a class="pn prev" href="{{ .RelPermalink }}" rel="prev"><span class="k">Previous</span><span class="t"><span class="arw" aria-hidden="true">←</span> {{ .Params.navTitle | default .Title }}</span></a>
+    {{- end }}
+  {{- end }}
+  {{- if lt $i (sub (len $slugs) 1) }}
+    {{- with site.GetPage (printf "/%s" (index $slugs (add $i 1))) }}
+  <a class="pn next" href="{{ .RelPermalink }}" rel="next"><span class="k">Next</span><span class="t">{{ .Params.navTitle | default .Title }} <span class="arw" aria-hidden="true">→</span></span></a>
+    {{- end }}
+  {{- end }}
+</nav>
+{{- end }}

@@ -1,0 +1,6 @@
+{{- $group := partial "group-of.html" .File.ContentBaseName -}}
+<nav class="crumb" aria-label="Breadcrumb">
+  <a href="{{ site.Home.RelPermalink }}">Docs</a>
+  {{- with $group }}<span class="sep" aria-hidden="true">/</span><a href="{{ site.Home.RelPermalink }}#{{ . | anchorize }}">{{ . }}</a>{{ end }}
+  <span class="sep" aria-hidden="true">/</span><span aria-current="page">{{ .Params.navTitle | default .Title }}</span>
+</nav>

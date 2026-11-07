@@ -1,0 +1,8 @@
+{{- $level := .Params.level -}}
+{{- if not (in (slice "beginner" "advanced") $level) -}}
+  {{- errorf "%s: front matter `level` must be beginner or advanced, got %q" .File.Path $level -}}
+{{- end -}}
+<div class="badges">
+  <span class="badge level-{{ $level }}">{{ upper $level }}</span>
+  <span class="badge time">~{{ .ReadingTime }} min read</span>
+</div>
