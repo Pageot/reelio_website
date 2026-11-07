@@ -1124,6 +1124,15 @@ footer.site :focus-visible {
   color: var(--navy);
   margin: 40px 0 0;
 }
+.legal-body h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--navy);
+  max-width: 68ch;
+  margin: 20px 0 0;
+}
 .legal-body p,
 .legal-body li {
   font-family: 'Bricolage Grotesque', sans-serif;
@@ -1240,3 +1249,53 @@ footer.site :focus-visible {
     line-height: 1.25;
   }
 }
+
+/* ============================ VS EXPLORER =========================== */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  clip: rect(0 0 0 0); overflow: hidden; white-space: nowrap;
+}
+.versus { padding: 56px 0; }
+.versus-card {
+  margin-top: 32px;
+  background: var(--paper);
+  border: 1px solid var(--navy);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 var(--navy);
+  overflow-x: auto;
+}
+.versus-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+.versus-table th,
+.versus-table td {
+  padding: 14px 22px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.35;
+  border-top: 1px solid var(--navy-soft);
+}
+.versus-table thead th {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 18px;
+  color: var(--navy);
+  border-top: none;
+  padding-top: 18px;
+}
+.versus-table tbody th {
+  font-family: 'Geist', sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+}
+.versus-table td.yes { color: var(--ink); font-weight: 500; }
+.versus-table td.yes::before { content: '✓ '; color: var(--orange); font-weight: 700; }
+.versus-table a { color: var(--navy); }
+.versus-table a:hover { color: var(--orange); }
+
+/* ============================= USE CASES ============================ */
+.usecases { padding: 0 0 56px; }
+.usecase-card { min-height: 0; gap: 0; }

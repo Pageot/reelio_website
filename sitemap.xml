@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://reelio.in/</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://reelio.ch/</loc>
+    <lastmod>2026-07-11</lastmod>
   </url>
   <url>
-    <loc>https://reelio.in/privacy/</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://reelio.ch/privacy/</loc>
+    <lastmod>2026-07-11</lastmod>
   </url>
   <url>
-    <loc>https://reelio.in/windows-explorer-video-thumbnails-not-showing.html</loc>
-    <lastmod>2026-06-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://reelio.ch/windows-explorer-video-thumbnails-not-showing.html</loc>
+    <lastmod>2026-07-11</lastmod>
   </url>
 </urlset>

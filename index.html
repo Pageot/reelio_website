@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <title>Windows Video Library with Hover-Scrub Previews | Reelio</title>
-<meta name="description" content="Reelio is a native Windows video library: preview clips on hover, color-tag and instantly search, then drag into Premiere or DaVinci. 100% local, one-time payment." />
+<meta name="description" content="Native Windows video library: hover to preview any clip, color-tag, search instantly, then drag into Premiere or DaVinci. 100% local. Free up to 25 clips." />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color" content="#FFD344" />
-<link rel="canonical" href="https://reelio.in/" />
+<link rel="canonical" href="https://reelio.ch/" />
 <link rel="icon" href="favicon.ico" sizes="any" />
 <link rel="icon" type="image/svg+xml" href="assets/logoReelio.svg" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
@@ -17,8 +17,8 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Reelio, Native Windows video library with hover-scrub previews" />
 <meta property="og:description" content="The video library Windows Explorer never gave you. Hover-scrub clips, tag, search and drag straight into Premiere. 100% local, one-time payment." />
-<meta property="og:url" content="https://reelio.in/" />
-<meta property="og:image" content="https://reelio.in/assets/Reelio_SocialsShare.jpg" />
+<meta property="og:url" content="https://reelio.ch/" />
+<meta property="og:image" content="https://reelio.ch/assets/Reelio_SocialsShare.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Reelio, Native Windows video library" />
 <meta name="twitter:description" content="Hover-scrub previews, color tags, drag into Premiere. 100% local. Windows-native." />
-<meta name="twitter:image" content="https://reelio.in/assets/Reelio_SocialsShare.jpg" />
+<meta name="twitter:image" content="https://reelio.ch/assets/Reelio_SocialsShare.jpg" />
 <meta name="twitter:image:alt" content="The Reelio app showing a video library of hover-scrub thumbnails, on a yellow background." />
 
 <!-- SoftwareApplication structured data -->
@@ -53,14 +53,14 @@
     "Drag clips into Adobe Premiere Pro, DaVinci Resolve or Windows Explorer with metadata preserved",
     "100% local, no cloud, no account, no telemetry"
   ],
-  "url": "https://reelio.in/",
-  "image": "https://reelio.in/assets/Reelio_SocialsShare.jpg",
-  "screenshot": "https://reelio.in/assets/GalleryTab-1920.jpg",
+  "url": "https://reelio.ch/",
+  "image": "https://reelio.ch/assets/Reelio_SocialsShare.jpg",
+  "screenshot": "https://reelio.ch/assets/GalleryTab-1920.jpg",
   "downloadUrl": "https://apps.microsoft.com/detail/9P04HB3XHT93",
   "installUrl": "https://apps.microsoft.com/detail/9P04HB3XHT93",
-  "offers": {"@type":"Offer","price":"24.99","priceCurrency":"USD","category":"OneTimePurchase","availability":"https://schema.org/InStock","url":"https://apps.microsoft.com/detail/9P04HB3XHT93"},
+  "offers": {"@type":"AggregateOffer","lowPrice":"0","highPrice":"24.99","priceCurrency":"USD","offerCount":"2","availability":"https://schema.org/InStock","url":"https://apps.microsoft.com/detail/9P04HB3XHT93"},
   "author": {"@type":"Organization","name":"Reelio"},
-  "publisher": {"@type":"Organization","name":"Reelio","url":"https://reelio.in/","logo":{"@type":"ImageObject","url":"https://reelio.in/assets/logo-large.png","width":1024,"height":1024}}
+  "publisher": {"@type":"Organization","name":"Reelio","url":"https://reelio.ch/","logo":{"@type":"ImageObject","url":"https://reelio.ch/assets/logo-large.png","width":1024,"height":1024}}
 }
 </script>
 <!-- TODO: add "aggregateRating" to the SoftwareApplication schema once real Microsoft Store reviews exist AND are shown on this page (never fabricate). Add more profiles (YouTube, X, etc.) to Organization.sameAs as they go live. -->
@@ -72,8 +72,11 @@
     {"@type":"Question","name":"Does it really stay 100% local?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zero cloud, zero telemetry, zero account. Everything sits in reelio/index.db on your computer."}},
     {"@type":"Question","name":"Will it eat my CPU?","acceptedAnswer":{"@type":"Answer","text":"The FFmpeg worker pool is capped at 2 processes. Scans are iterative, not recursive, stack-safe on huge folder trees, and the UI never blocks."}},
     {"@type":"Question","name":"What if I unplug my external drive?","acceptedAnswer":{"@type":"Answer","text":"Nothing, until you ask. Reelio never re-scans on its own, so as long as the drive stays plugged in your clips stay put. The library only changes when you manually trigger a re-scan: at that point Reelio adds any new files it finds at the watched path and removes anything it can no longer reach. Unplug the drive, then run a scan, and those clips disappear from the library. Your video files themselves are never touched."}},
+    {"@type":"Question","name":"What formats does it read?","acceptedAnswer":{"@type":"Answer","text":"Anything the bundled FFmpeg can decode: MP4, MOV, MKV, AVI, WebM, HEVC/H.265 and more. If Explorer shows a blank icon, Reelio probably previews it anyway."}},
+    {"@type":"Question","name":"Windows Explorer not showing your video thumbnails?","acceptedAnswer":{"@type":"Answer","text":"Classic. Blank film icons, MKV files showing nothing. We wrote up every fix that actually works, and the shortcut past all of them, in our guide at reelio.ch/windows-explorer-video-thumbnails-not-showing.html."}},
     {"@type":"Question","name":"Mac / Linux version?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Reelio is WinUI 3, Windows-native."}},
-    {"@type":"Question","name":"How much?","acceptedAnswer":{"@type":"Answer","text":"One-time payment on the Microsoft Store. No subscription, ever."}}
+    {"@type":"Question","name":"Does it run on Windows 10?","acceptedAnswer":{"@type":"Answer","text":"No, Reelio is built for Windows 11. That is where WinUI 3 and the native Mica look live, and it is the only place we test."}},
+    {"@type":"Question","name":"How much?","acceptedAnswer":{"@type":"Answer","text":"Free up to 25 clips, every feature unlocked. Then $24.99 one-time on the Microsoft Store. No subscription, ever."}}
   ]
 }
 </script>
@@ -82,14 +85,15 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Reelio",
-  "url": "https://reelio.in/",
-  "logo": {"@type":"ImageObject","url":"https://reelio.in/assets/logo-large.png","width":1024,"height":1024},
+  "url": "https://reelio.ch/",
+  "logo": {"@type":"ImageObject","url":"https://reelio.ch/assets/logo-large.png","width":1024,"height":1024},
   "sameAs": ["https://apps.microsoft.com/detail/9P04HB3XHT93"]
 }
 </script>
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/bricolage-grotesque-latin.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-latin.woff2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/jetbrains-mono-latin.woff2" crossorigin />
 
 <link rel="preload" as="image" href="assets/fig-hero-thumb.jpg" fetchpriority="high" />
 <link rel="stylesheet" href="styles.css" />
@@ -124,7 +128,7 @@
       <!-- Big left card -->
       <div class="hero-card big">
         <h1 id="hero-title">The Windows video library that <span class="orange">previews every clip on hover.</span></h1>
-        <p>Your video stash, organized. Hover to preview any clip without playing it, color-tag and search in an instant, then drag straight into Premiere Pro or DaVinci Resolve. Built for video editors, videographers and anyone with a big local video library on Windows. 100% local, one-time payment.</p>
+        <p>Your video stash, organized. Hover to preview any clip without playing it, color-tag and search in an instant, then drag straight into Premiere Pro or DaVinci Resolve. Built for video editors, videographers and anyone with a big local video library on Windows. Video library software without the bloat: 100% local, one-time payment.</p>
         <a class="btn-store" href="https://apps.microsoft.com/detail/9P04HB3XHT93?cid=web_home" target="_blank" rel="noopener" style="align-self: flex-start;">
           <svg viewBox="0 0 18 18" aria-hidden="true"><path fill="currentColor" d="M2.25 2.25h6.375v6.375H2.25V2.25zm7.125 0h6.375v6.375H9.375V2.25zM2.25 9.375h6.375V15.75H2.25V9.375zm7.125 0h6.375V15.75H9.375V9.375z"/></svg>
           Download on Microsoft Store
@@ -153,7 +157,7 @@
           <div class="meta-row">
             <span style="font-size: 12px">43 min</span>
             <span class="dot"></span>
-            <span style="font-size: 12px">260 mo</span>
+            <span style="font-size: 12px">260 MB</span>
             <span class="dot"></span>
             <span style="font-size: 12px">10/08/2024</span>
           </div>
@@ -165,8 +169,8 @@
     <div class="hero-bottom">
       <!-- 50k+ clips -->
       <div class="hero-card stat-card">
-        <span class="lbl-top">TESTED ON A DATA BASE OF</span>
-        <span class="big-num">50 000+ clips</span>
+        <span class="lbl-top">TESTED ON A DATABASE OF</span>
+        <span class="big-num">50,000+ clips</span>
         <span class="lbl-bot">iterative scans · stack-safe</span>
       </div>
       <!-- 100% local -->
@@ -186,7 +190,7 @@
         </div>
         <div class="text">
           <span class="card-h">Organize</span>
-          <p>The best way to stay organized</p>
+          <p>A video organizer for your whole stash</p>
         </div>
       </div>
     </div>
@@ -288,9 +292,9 @@
             <h3>Color tags &amp; search</h3>
             <p>Drag clips onto color tags, star your favorites, then find anything with instant search, everything flows smoothly, like a wave being ridden.</p>
           </div>
-          <div class="tags-mock" data-comment-anchor="7040b15b75-div">
-            <img class="tags-illu" src="assets/illu-tags.svg" alt="Reelio sidebar with color tags and a Favorites list for grouping video clips." width="214" height="142" decoding="async" />
-            <img class="tags-star" src="assets/fig-star.png" alt="" aria-hidden="true" width="48" height="48" decoding="async" />
+          <div class="tags-mock">
+            <img class="tags-illu" src="assets/illu-tags.svg" alt="Reelio sidebar with color tags and a Favorites list for grouping video clips." width="214" height="142" loading="lazy" decoding="async" />
+            <img class="tags-star" src="assets/fig-star.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
@@ -307,7 +311,7 @@
             <p>Drop straight into Premiere Pro, DaVinci Resolve, or back to Explorer. OLE metadata is set so the clip lands with the right name in your bin.</p>
           </div>
           <div class="editor-vis">
-            <img class="premiere" src="assets/fig-premiere-composite.png" alt="Dragging a Reelio clip into an Adobe Premiere Pro timeline with its name and metadata intact." width="718" height="444" decoding="async" />
+            <img class="premiere" src="assets/fig-premiere-composite.png" alt="Dragging a Reelio clip into an Adobe Premiere Pro timeline with its name and metadata intact." width="718" height="444" loading="lazy" decoding="async" />
           </div>
         </article>
       </div>
@@ -316,11 +320,58 @@
   </div>
 </section>
 
+<!-- ========== VS FILE EXPLORER ========== -->
+<section class="versus" id="versus" aria-labelledby="versus-title">
+  <div class="wrap">
+    <span class="section-eyebrow">VS FILE EXPLORER</span>
+    <h2 id="versus-title" class="section-title">Explorer walked so Reelio could surf.</h2>
+    <p class="section-sub">Windows Explorer is fine at files. It was never built for a video library.</p>
+    <div class="versus-card">
+      <table class="versus-table">
+        <thead>
+          <tr>
+            <th scope="col"><span class="visually-hidden">Feature</span></th>
+            <th scope="col">File Explorer</th>
+            <th scope="col">Reelio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Preview a clip</th>
+            <td>One static thumbnail, when it works</td>
+            <td class="yes">Hover-scrub through real frames, no clicks</td>
+          </tr>
+          <tr>
+            <th scope="row">MKV &amp; HEVC thumbnails</th>
+            <td><a href="windows-explorer-video-thumbnails-not-showing.html">Blank film icons</a></td>
+            <td class="yes">Every format, previews baked by FFmpeg</td>
+          </tr>
+          <tr>
+            <th scope="row">Tag &amp; group clips</th>
+            <td>Tags on some formats only, lost on exFAT drives</td>
+            <td class="yes">Color tags on anything, stored in your library</td>
+          </tr>
+          <tr>
+            <th scope="row">Find a clip fast</th>
+            <td>"Working on it..." green bar</td>
+            <td class="yes">Instant search, results as you type</td>
+          </tr>
+          <tr>
+            <th scope="row">Send to your editor</th>
+            <td>Dig through folders first</td>
+            <td class="yes">Drag from search straight into Premiere or Resolve</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- ========== ARCADE ========== -->
 <section class="arcade" id="demo" aria-labelledby="arcade-title">
   <div class="wrap">
     <span class="section-eyebrow">TRY IT YOURSELF</span>
-    <h2 id="arcade-title" class="section-title" data-comment-anchor="b7e550de4a-h2">This is how every clip looks in your library.</h2>
+    <h2 id="arcade-title" class="section-title">This is how every clip looks in your library.</h2>
     <p class="section-sub">Three clips. Move your mouse over them. Watch them play. No clicks, no buffering, that's exactly what Reelio does in your library.</p>
 
     <div class="arcade-grid">
@@ -334,7 +385,7 @@
         </div>
         <div class="video-meta">
           <span class="ttl">Sip, relax, repeat</span>
-          <div class="meta-row"><span>11 min</span><span class="dot"></span><span>260 mo</span><span class="dot"></span><span>10/08/2026</span></div>
+          <div class="meta-row"><span>43 min</span><span class="dot"></span><span>260 MB</span><span class="dot"></span><span>10/08/2024</span></div>
         </div>
       </div>
       <div class="arcade-card">
@@ -346,8 +397,8 @@
           </div>
         </div>
         <div class="video-meta">
-          <span class="ttl" data-comment-anchor="bf998b7032-span">Paddle, pop, pray</span>
-          <div class="meta-row"><span>43 min</span><span class="dot"></span><span>46 mo</span><span class="dot"></span><span>10/08/2016</span></div>
+          <span class="ttl">Paddle, pop, pray</span>
+          <div class="meta-row"><span>18 min</span><span class="dot"></span><span>46 MB</span><span class="dot"></span><span>10/08/2016</span></div>
         </div>
       </div>
       <div class="arcade-card">
@@ -360,7 +411,7 @@
         </div>
         <div class="video-meta">
           <span class="ttl">Wax, wait, wipeout</span>
-          <div class="meta-row"><span>24 min</span><span class="dot"></span><span>128 mo</span><span class="dot"></span><span>10/08/2027</span></div>
+          <div class="meta-row"><span>24 min</span><span class="dot"></span><span>128 MB</span><span class="dot"></span><span>06/12/2025</span></div>
         </div>
       </div>
     </div>
@@ -376,7 +427,7 @@
 
     <div class="workflow-grid">
       <div class="editor-card">
-        <span class="pill">Drop in it</span>
+        <span class="pill">Drop it in</span>
         <div class="logo"><div class="pr-logo">Pr</div></div>
         <div>
           <div class="name">Adobe Premiere Pro</div>
@@ -384,16 +435,16 @@
         </div>
       </div>
       <div class="editor-card">
-        <span class="pill">Drop in it</span>
-        <div class="logo"><img src="assets/fig-davinci.png" alt="DaVinci Resolve logo" width="1024" height="1024" decoding="async" /></div>
+        <span class="pill">Drop it in</span>
+        <div class="logo"><img src="assets/fig-davinci.png" alt="DaVinci Resolve logo" width="114" height="114" loading="lazy" decoding="async" /></div>
         <div>
           <div class="name">DaVinci Resolve</div>
           <div class="sub">drops into the active bin</div>
         </div>
       </div>
       <div class="editor-card">
-        <span class="pill">Drop in it</span>
-        <div class="logo"><img src="assets/fig-explorer.png" alt="Windows File Explorer logo" width="250" height="225" decoding="async" /></div>
+        <span class="pill">Drop it in</span>
+        <div class="logo"><img src="assets/fig-explorer.png" alt="Windows File Explorer logo" width="250" height="225" loading="lazy" decoding="async" /></div>
         <div>
           <div class="name">Windows Explorer</div>
           <div class="sub">because old habits stick</div>
@@ -433,6 +484,35 @@
   </div>
 </section>
 
+<!-- ========== USE CASES ========== -->
+<section class="usecases" id="use-cases" aria-labelledby="usecases-title">
+  <div class="wrap">
+    <span class="section-eyebrow">WHO IT'S FOR</span>
+    <h2 id="usecases-title" class="section-title">Bring your own stash.</h2>
+    <p class="section-sub">Built for video editors first, handy for anyone whose video folder got out of hand.</p>
+    <div class="three-grid usecase-grid">
+      <div class="three-col navy">
+        <article class="three-card navy usecase-card">
+          <h3>Video editors &amp; b-roll</h3>
+          <p>Organize b-roll and project footage, star your selects, then drag the exact clip straight into Premiere Pro or DaVinci Resolve. Your footage library finally acts like one.</p>
+        </article>
+      </div>
+      <div class="three-col yellow">
+        <article class="three-card yellow usecase-card">
+          <h3>Drone &amp; GoPro footage</h3>
+          <p>DJI_0042.MP4 and GX010123.MP4 tell you nothing. Hover-scrub shows you the flight, so you can organize drone and GoPro clips without renaming a thing.</p>
+        </article>
+      </div>
+      <div class="three-col orange">
+        <article class="three-card orange usecase-card">
+          <h3>Family video archives</h3>
+          <p>Decades of camcorder tapes and phone videos, organized on your own computer. Nothing uploaded, nothing scanned by a cloud, find the birthday and keep the privacy.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== FAQ ========== -->
 <section class="faq" id="faq" aria-labelledby="faq-title">
   <div class="wrap">
@@ -453,15 +533,27 @@
           <summary>What if I unplug my external drive?</summary>
           <p>Nothing, until you ask. Reelio never re-scans on its own, so as long as the drive stays plugged in your clips stay put. The library only changes when you manually trigger a re-scan: at that point Reelio adds any new files it finds at the watched path and removes anything it can no longer reach. Unplug the drive, then run a scan, and those clips disappear from the library. Your video files themselves are never touched.</p>
         </details>
+        <details class="qa">
+          <summary>What formats does it read?</summary>
+          <p>Anything the bundled FFmpeg can decode: MP4, MOV, MKV, AVI, WebM, HEVC/H.265 and more. If Explorer shows a blank icon, Reelio probably previews it anyway.</p>
+        </details>
       </div>
       <div class="faq-col">
+        <details class="qa">
+          <summary>Windows Explorer not showing your video thumbnails?</summary>
+          <p>Classic. Blank film icons, MKV files showing nothing. We wrote up <a href="windows-explorer-video-thumbnails-not-showing.html">every fix that actually works</a>, and the shortcut past all of them.</p>
+        </details>
         <details class="qa">
           <summary>Mac / Linux version?</summary>
           <p>Not yet. Reelio is WinUI 3, Windows-native.</p>
         </details>
         <details class="qa">
+          <summary>Does it run on Windows 10?</summary>
+          <p>No, Reelio is built for Windows 11. That is where WinUI 3 and the native Mica look live, and it is the only place we test.</p>
+        </details>
+        <details class="qa">
           <summary>How much?</summary>
-          <p>One-time payment on the Microsoft Store. No subscription, ever.</p>
+          <p>Free up to 25 clips, every feature unlocked. Then $24.99 one-time on the Microsoft Store. No subscription, ever.</p>
         </details>
       </div>
     </div>
