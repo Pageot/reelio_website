@@ -55,7 +55,7 @@ When you pick another quality, Reelio asks **Regenerate thumbnails now?**, becau
 
 ## No black bands
 
-Each thumbnail is scaled to fill its whole box and cropped from the center, so no video ever shows black bands. Landscape and square videos get a 16:9 thumbnail. Portrait videos get the same box turned to 9:16 (270x480 at **High**), so they keep a vertical thumbnail. See [Vertical videos](/docs/vertical-videos/).
+Each thumbnail is scaled to fill its whole box and cropped from the center, so Reelio never adds black bands around a video. Landscape and square videos get a 16:9 thumbnail. Portrait videos get the same box turned to 9:16 (270x480 at **High**), so they keep a vertical thumbnail. See [Vertical videos](/docs/vertical-videos/).
 
 ## Hardware-accelerated decoding
 

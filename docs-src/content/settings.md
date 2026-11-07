@@ -51,9 +51,7 @@ The page has seven sections, in this order: **Premium**, **Library**, **Playback
 
 ## Advanced
 
-Both Advanced settings sit in the **Power-user settings** group, which starts collapsed: click it to show them.
-
-- **Hardware-accelerated decoding**: on by default. Decodes video on the graphics card when generating thumbnails. Turn it off if some videos fail. See [Thumbnail quality and speed](/docs/quality-and-speed/).
+Both Advanced settings sit in the **Power-user settings** group, which starts collapsed: click it to show them. **Settings file location** comes first, then **Hardware-accelerated decoding**.
 
 ### Settings file location
 
@@ -69,6 +67,10 @@ Reelio copies settings.json to that folder and restarts at once, reopening the s
 If the chosen folder cannot be reached when Reelio starts, it uses the settings file in the default folder and shows **Settings location unreachable**.
 
 This only moves the settings file. Thumbnails and library indexes live in the cache folder, which you move from the **Library** section.
+
+### Hardware-accelerated decoding
+
+**Hardware-accelerated decoding** is on by default. It decodes video on the graphics card when generating thumbnails. Turn it off if some videos fail. See [Thumbnail quality and speed](/docs/quality-and-speed/).
 
 ## About
 

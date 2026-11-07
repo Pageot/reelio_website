@@ -241,6 +241,18 @@ class SiteTests(unittest.TestCase):
                 classes = [a.get("class", "").split() for _, a in parse(path).tags]
                 self.assertFalse([c for c in classes if "pending" in c or "pending-link" in c])
 
+    def test_copy_regressions_from_review(self):
+        # facts the final review found wrong; the app is the reference (Reelio 1.3.0.0)
+        def text(slug):
+            return " ".join(" ".join(parse(page_file(slug)).main_text).split())
+        # the cover crop never ADDS bands; bands burned into the footage still show
+        self.assertNotIn("no video ever shows black bands", text("quality-and-speed"))
+        # folder.* matching is case-insensitive (F-052); no inventory row backs a NAS casing caveat
+        self.assertNotIn("may need the exact lowercase name", text("folder-thumbnails"))
+        # settings follows the app order: Settings file location, then Hardware-accelerated decoding
+        settings = text("settings")
+        self.assertLess(settings.index("Settings file location"), settings.index("Hardware-accelerated decoding"))
+
     def test_no_em_dash_in_docs(self):
         for path in docs_html_files():
             with self.subTest(page=str(path.relative_to(SITE))):

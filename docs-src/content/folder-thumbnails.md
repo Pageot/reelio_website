@@ -46,7 +46,7 @@ The mosaic appears in the **Extra large**, **Large** and **Medium** views. In th
 Put an image named `folder` directly inside the folder, with the extension .jpg, .jpeg, .png or .webp. It replaces the mosaic: the tile shows only that image.
 
 - If several exist, the first one wins in this order: `folder.jpg`, `folder.jpeg`, `folder.png`, `folder.webp`.
-- Use lowercase names. Other casings, such as `Folder.JPG`, work on standard Windows drives, but a NAS share may need the exact lowercase name.
+- Case does not matter on Windows drives: `Folder.JPG` or `FOLDER.png` are found too.
 - A portrait image (taller than wide) gives the folder a narrow vertical tile, half a cell wide, which can share its cell with another vertical tile. A square image counts as landscape. See [Vertical videos](/docs/vertical-videos/).
 
 {{< tip >}}
